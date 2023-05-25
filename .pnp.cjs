@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@emotion/react", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:11.11.0"],\
             ["@emotion/styled", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:11.11.0"],\
+            ["@mui/icons-material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.11.16"],\
             ["@mui/material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.13.2"],\
             ["@tanstack/react-query", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:4.29.7"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
@@ -3964,6 +3965,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@mui-core-downloads-tracker-npm-5.13.2-d8f7093fb3-f603aaddc1.zip/node_modules/@mui/core-downloads-tracker/",\
           "packageDependencies": [\
             ["@mui/core-downloads-tracker", "npm:5.13.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@mui/icons-material", [\
+        ["npm:5.11.16", {\
+          "packageLocation": "./.yarn/cache/@mui-icons-material-npm-5.11.16-d962649d08-db70426b6e.zip/node_modules/@mui/icons-material/",\
+          "packageDependencies": [\
+            ["@mui/icons-material", "npm:5.11.16"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.11.16", {\
+          "packageLocation": "./.yarn/__virtual__/@mui-icons-material-virtual-09004f924b/0/cache/@mui-icons-material-npm-5.11.16-d962649d08-db70426b6e.zip/node_modules/@mui/icons-material/",\
+          "packageDependencies": [\
+            ["@mui/icons-material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.11.16"],\
+            ["@babel/runtime", "npm:7.21.5"],\
+            ["@mui/material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.13.2"],\
+            ["@types/mui__material", null],\
+            ["@types/react", null],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@mui/material",\
+            "@types/mui__material",\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -16974,6 +17002,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["to-do", "workspace:."],\
             ["@emotion/react", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:11.11.0"],\
             ["@emotion/styled", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:11.11.0"],\
+            ["@mui/icons-material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.11.16"],\
             ["@mui/material", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:5.13.2"],\
             ["@tanstack/react-query", "virtual:2285fa6360eae667c9ef89ba3f1be83cd255828c5c86a0e5b7cb8f10c054fa63bfeeca28eabc45e0b581eb67f904a77216435940d37916c335ad0a90447b98b1#npm:4.29.7"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
