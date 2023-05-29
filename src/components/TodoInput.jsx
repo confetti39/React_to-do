@@ -5,26 +5,48 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 
-export default function AddTodoInput({ type }) {
+export default function AddTodoInput({ type, todoId }) {
   const navigate = useNavigate();
   const [text, setText] = useState("");
   const handleChange = (e) => setText(e.target.value);
   const handleSubmit = async (e) => {
-    fetch("https://dummyjson.com/todos/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        todo: text,
-        completed: false,
-        userId: 5,
-      }),
-    })
-      .then((res) => res.json())
-      .then(console.log);
-    e.preventDefault();
-    setText("");
-    navigate(`/`);
+    switch (type) {
+      case "ADD":
+        fetch("https://dummyjson.com/todos/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            todo: text,
+            completed: false,
+            userId: 5,
+          }),
+        })
+          .then((res) => res.json())
+          .then(console.log);
+        e.preventDefault();
+        setText("");
+        navigate(`/`);
+        break;
+
+      case "EDIT":
+        fetch(`https://dummyjson.com/todos/${todoId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            todo: text,
+          }),
+        })
+          .then((res) => res.json())
+          .then(console.log);
+        e.preventDefault();
+        setText("");
+        break;
+
+      default:
+        console.log("error!");
+    }
   };
+
   return (
     <Box
       component="form"
