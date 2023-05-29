@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +10,17 @@ export default function TodoList() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const handleChangePage = (e) => setPage(parseInt(e.target.outerText));
+  const handleUpdateTodo = async (checked, id) => {
+    await fetch(`https://dummyjson.com/todos/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        completed: !checked,
+      }),
+    })
+      .then((res) => res.json())
+      .then(console.log);
+  };
   const handleClickTodo = (id) => {
     navigate(`/todos/${id}`);
   };
@@ -35,21 +45,19 @@ export default function TodoList() {
   if (error) return <p>{error}</p>;
   return (
     <nav aria-label="secondary mailbox folders">
-      <List>
+      <FormGroup>
         {todos.todos.map((todo) => {
           return (
-            <ListItem
+            <FormControlLabel
               key={todo.id}
-              onClick={() => handleClickTodo(todo.id)}
-              disablePadding
-            >
-              <ListItemButton>
-                <ListItemText primary={todo.todo} />
-              </ListItemButton>
-            </ListItem>
+              checked={todo.completed}
+              control={<Checkbox onClick={() => handleClickTodo(todo.id)} />}
+              label={todo.todo}
+              onChange={() => handleUpdateTodo(todo.completed, todo.id)}
+            />
           );
         })}
-      </List>
+      </FormGroup>
       <Pagination
         count={todos.total / todos.limit}
         color="secondary"
