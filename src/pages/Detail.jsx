@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import Navbar from "../components/Header/Header";
+import Header from "../components/Header/Header";
 import DetailButtons from "../components/DetailButtons";
 import Todo from "../components/Todo";
 
@@ -11,7 +11,7 @@ export default function Detail() {
     isLoading,
     error,
     data: todo,
-  } = useQuery(["todo"], async () => {
+  } = useQuery(["todo", todoId], async () => {
     console.log("fetching...");
     return fetch(`https://dummyjson.com/todos/${todoId}`).then((res) =>
       res.json()
@@ -22,9 +22,9 @@ export default function Detail() {
   if (error) return <p>{error}</p>;
   return (
     <>
-      <Navbar />
+      <Header />
       <DetailButtons />
-      <Todo todo={todo} />
+      <Todo todo={todo} todoId={todoId} isTodoList={false} />
     </>
   );
 }

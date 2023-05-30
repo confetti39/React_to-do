@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 
-export default function AddTodoInput({ type, todoId }) {
+export default function AddTodoInput({ type, todoId, setEditMode }) {
   const navigate = useNavigate();
   const [text, setText] = useState("");
   const handleChange = (e) => setText(e.target.value);
@@ -37,9 +37,11 @@ export default function AddTodoInput({ type, todoId }) {
           }),
         })
           .then((res) => res.json())
+          .then((res) => res.todo)
           .then(console.log);
         e.preventDefault();
         setText("");
+        setEditMode(false);
         break;
 
       default:

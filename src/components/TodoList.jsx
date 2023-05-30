@@ -11,9 +11,6 @@ export default function TodoList() {
   const [page, setPage] = useState(pageId === undefined ? 1 : parseInt(pageId));
   const countPerPage = 30;
   const handleChangePage = (e) => {
-    // console.log(
-    //   `pageId: ${pageId} type: ${typeof pageId} ${e.target.outerText}`
-    // );
     setPage(parseInt(e.target.outerText));
     navigate(`/page/${e.target.outerText}`);
   };
@@ -43,7 +40,7 @@ export default function TodoList() {
       {todos.todos.map((todo) => {
         return (
           <div key={todo.id}>
-            <Todo todo={todo} />
+            <Todo todo={todo} pageId={pageId} isTodoList={true} />
           </div>
         );
       })}

@@ -2,7 +2,7 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
 
-export default function Todo({ todo }) {
+export default function Todo({ todo, pageId, todoId, isTodoList }) {
   const navigate = useNavigate();
   const handleUpdateTodo = async (checked, id) => {
     await fetch(`https://dummyjson.com/todos/${id}`, {
@@ -13,6 +13,14 @@ export default function Todo({ todo }) {
       }),
     })
       .then((res) => res.json())
+      .then((res) => (todo.completed = res.completed))
+      .then(
+        navigate(
+          isTodoList
+            ? `/page/${pageId === undefined ? 1 : parseInt(pageId)}`
+            : `/todos/${todoId}`
+        )
+      )
       .then(console.log);
   };
   const handleClickTodo = (id) => {
@@ -26,7 +34,9 @@ export default function Todo({ todo }) {
         label={todo.todo}
         onChange={() => handleUpdateTodo(todo.completed, todo.id)}
       />
-      <span onClick={() => handleClickTodo(todo.id)}>{todo.todo}</span>
+      <span onClick={() => handleClickTodo(todo.id)}>
+        {/* {updatedTodo !== null ? updatedTodo : todo.todo} */ todo.todo}
+      </span>
     </div>
   );
 }
