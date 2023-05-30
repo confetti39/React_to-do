@@ -7,12 +7,15 @@ import Detail from "./pages/Detail";
 import AddTodo from "./pages/AddTodo";
 
 const queryClient = new QueryClient();
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     errorElement: <p>Not Found🫠</p>,
+  },
+  {
+    path: "/page/:pageId",
+    element: <Home />,
   },
   {
     path: "/todos/:todoId",

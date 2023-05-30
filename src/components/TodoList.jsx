@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "@mui/material/Pagination";
 import Todo from "./Todo";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function TodoList() {
-  const [page, setPage] = useState(1);
+  const { pageId } = useParams();
+  const navigate = useNavigate();
+  const [page, setPage] = useState(pageId === undefined ? 1 : parseInt(pageId));
   const countPerPage = 30;
-  const handleChangePage = (e) => setPage(parseInt(e.target.outerText));
+  const handleChangePage = (e) => {
+    // console.log(
+    //   `pageId: ${pageId} type: ${typeof pageId} ${e.target.outerText}`
+    // );
+    setPage(parseInt(e.target.outerText));
+    navigate(`/page/${e.target.outerText}`);
+  };
   const {
     isLoading,
     error,
