@@ -12,6 +12,7 @@ export default function DetailButtons() {
     setEditMode((prev) => !prev);
   };
   const handleDeleteTodo = async () => {
+    alert("삭제하시겠습니까?");
     fetch(`https://dummyjson.com/todos/${todoId}`, {
       method: "DELETE",
     })

@@ -1,10 +1,11 @@
 import React from "react";
 import AddTodoInput from "../components/TodoInput";
+import Header from "../components/Header/Header";
 
 export default function AddTodo() {
   return (
     <>
-      <h1>ADD TODO PAGE</h1>
+      <Header />
       <AddTodoInput type="ADD" />
     </>
   );
