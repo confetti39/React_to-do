@@ -5,6 +5,8 @@ import Todo from "../Todo/Todo";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styles from "./TodoList.module.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 export default function TodoList() {
   const { pageId } = useParams();
@@ -34,7 +36,12 @@ export default function TodoList() {
     }
   );
 
-  if (isLoading) return <p>로딩 중...</p>;
+  if (isLoading)
+    return (
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress color="secondary" />
+      </Box>
+    );
   if (error) return <p>{error}</p>;
   return (
     <nav aria-label="secondary mailbox folders" className={styles.todoList}>

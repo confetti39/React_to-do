@@ -38,7 +38,7 @@ export default function Todo({ todo, pageId, isTodoList }) {
         onChange={() => handleUpdateTodo(checked, todo.id)}
       />
       <span
-        className={styles.todoContent}
+        className={`${styles.todoContent} ${checked ? styles.checked : ""}`}
         onClick={() => handleClickTodo(todo.id)}
       >
         {todo.todo}

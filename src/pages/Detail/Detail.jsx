@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import Header from "../../components/Header/Header";
 import DetailButtons from "../../components/DetailButtons";
 import Todo from "../../components/Todo/Todo";
@@ -25,7 +27,15 @@ export default function Detail() {
     }
   );
 
-  if (isLoading) return <p>로딩 중...</p>;
+  if (isLoading)
+    return (
+      <div className={styles.loading}>
+        <Header style={{ display: "none" }} />
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress color="secondary" />
+        </Box>
+      </div>
+    );
   if (error) return <p>{error}</p>;
   return (
     <div className={styles.container}>

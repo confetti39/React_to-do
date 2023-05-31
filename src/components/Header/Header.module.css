@@ -1,13 +1,16 @@
 .header {
+  color: var(--color-accent);
   font-size: 2.5rem;
   font-weight: bold;
   display: flex;
   justify-content: center;
   padding: 0.5rem;
   margin: 1rem;
+  transition: all 300ms ease-out;
 }
 
 .header:hover {
+  color: var(--color-accent-2);
   cursor: pointer;
-  color: var(--color-accent);
+  transform: rotate(-1deg);
 }
