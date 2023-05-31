@@ -15,9 +15,10 @@ export default function AddTodoButton() {
         className={styles.button}
         color="secondary"
         aria-label="add"
+        onClick={handleClickAddButton}
         sx={{ position: "fixed", right: "20px", bottom: "20px" }}
       >
-        <AddIcon onClick={handleClickAddButton} />
+        <AddIcon />
       </Fab>
     </div>
   );
