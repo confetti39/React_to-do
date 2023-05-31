@@ -12,24 +12,25 @@ export default function Detail() {
     isLoading,
     error,
     data: todo,
-  } = useQuery(["todo", todoId], async () => {
-    console.log("fetching...");
-    return fetch(`https://dummyjson.com/todos/${todoId}`).then((res) =>
-      res.json()
-    );
-  });
+  } = useQuery(
+    ["todo", todoId],
+    async () => {
+      console.log("fetching...");
+      return fetch(`https://dummyjson.com/todos/${todoId}`).then((res) =>
+        res.json()
+      );
+    },
+    {
+      staleTime: 5000,
+    }
+  );
 
   if (isLoading) return <p>로딩 중...</p>;
   if (error) return <p>{error}</p>;
   return (
     <div className={styles.container}>
       <Header className={styles.header} />
-      <Todo
-        className={styles.todo}
-        todo={todo}
-        todoId={todoId}
-        isTodoList={false}
-      />
+      <Todo className={styles.todo} todo={todo} isTodoList={false} />
       <DetailButtons className={styles.buttons} />
     </div>
   );

@@ -28,10 +28,10 @@ export default function TodoList() {
           countPerPage * (page - 1)
         }`
       ).then((res) => res.json());
+    },
+    {
+      staleTime: 1000 * 60 * 5,
     }
-    // {
-    //   staleTime: 1000 * 60 * 5,
-    // }
   );
 
   if (isLoading) return <p>로딩 중...</p>;

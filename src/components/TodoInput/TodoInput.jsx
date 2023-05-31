@@ -13,36 +13,41 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
   const handleSubmit = async (e) => {
     switch (type) {
       case "ADD":
-        fetch("https://dummyjson.com/todos/add", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            todo: text,
-            completed: false,
-            userId: 5,
-          }),
-        })
-          .then((res) => res.json())
-          .then(console.log);
-        e.preventDefault();
-        setText("");
-        navigate(`/`);
+        try {
+          const res = await fetch("https://dummyjson.com/todos/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              todo: text,
+              completed: false,
+              userId: 5,
+            }),
+          });
+          console.log(await res.json());
+          e.preventDefault();
+          setText("");
+          navigate(`/`);
+        } catch (err) {
+          console.log(err);
+        }
         break;
 
       case "EDIT":
-        fetch(`https://dummyjson.com/todos/${todoId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            todo: text,
-          }),
-        })
-          .then((res) => res.json())
-          .then((res) => res.todo)
-          .then(console.log);
-        e.preventDefault();
-        setText("");
-        setEditMode(false);
+        try {
+          const res = await fetch(`https://dummyjson.com/todos/${todoId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              todo: text,
+            }),
+          });
+          console.log(await res.json());
+          e.preventDefault();
+          setText("");
+          setEditMode(false);
+        } catch (err) {
+          console.log(err);
+        }
         break;
 
       default:
