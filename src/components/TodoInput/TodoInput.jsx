@@ -49,6 +49,12 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
         console.log("error!");
     }
   };
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
 
   return (
     <Box
@@ -67,6 +73,7 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
         variant="filled"
         color="secondary"
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       <Button
         className={styles.button}
