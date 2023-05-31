@@ -21,11 +21,11 @@ export default function DetailButtons() {
   };
   return (
     <div>
-      <IconButton color="primary" aria-label="edit">
-        <EditIcon onClick={handleEditTodo} color="secondary" />
+      <IconButton onClick={handleEditTodo} color="primary" aria-label="edit">
+        <EditIcon color="secondary" />
       </IconButton>
-      <IconButton aria-label="delete">
-        <DeleteIcon onClick={handleDeleteTodo} />
+      <IconButton onClick={handleDeleteTodo} aria-label="delete">
+        <DeleteIcon />
       </IconButton>
       {editMode ? (
         <TodoInput type="EDIT" todoId={todoId} setEditMode={setEditMode} />
