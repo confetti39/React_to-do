@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import TodoInput from "../components/TodoInput";
+import TodoInput from "./TodoInput/TodoInput";
 
 export default function DetailButtons() {
   const { todoId } = useParams();
@@ -22,7 +22,7 @@ export default function DetailButtons() {
   return (
     <div>
       <IconButton color="primary" aria-label="edit">
-        <EditIcon onClick={handleEditTodo} />
+        <EditIcon onClick={handleEditTodo} color="secondary" />
       </IconButton>
       <IconButton aria-label="delete">
         <DeleteIcon onClick={handleDeleteTodo} />

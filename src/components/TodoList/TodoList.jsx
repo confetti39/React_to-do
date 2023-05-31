@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "@mui/material/Pagination";
-import Todo from "./Todo";
+import Todo from "../Todo/Todo";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import styles from "./TodoList.module.css";
 
 export default function TodoList() {
   const { pageId } = useParams();
   const navigate = useNavigate();
   const [page, setPage] = useState(pageId === undefined ? 1 : parseInt(pageId));
   const countPerPage = 30;
-  const handleChangePage = (e) => {
-    setPage(parseInt(e.target.outerText));
-    navigate(`/page/${e.target.outerText}`);
+  const handleChangePage = (event, value) => {
+    setPage(value);
+    navigate(`/page/${value}`);
   };
   const {
     isLoading,
@@ -36,7 +37,7 @@ export default function TodoList() {
   if (isLoading) return <p>로딩 중...</p>;
   if (error) return <p>{error}</p>;
   return (
-    <nav aria-label="secondary mailbox folders">
+    <nav aria-label="secondary mailbox folders" className={styles.todoList}>
       {todos.todos.map((todo) => {
         return (
           <div key={todo.id}>
@@ -45,9 +46,9 @@ export default function TodoList() {
         );
       })}
       <Pagination
-        count={Math.ceil(todos.total / todos.limit)}
+        className={styles.pagination}
+        count={Math.ceil(todos.total / countPerPage)}
         color="secondary"
-        defaultPage={page}
         page={page}
         onChange={handleChangePage}
       />

@@ -1,6 +1,7 @@
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
+import styles from "./Todo.module.css";
 
 export default function Todo({ todo, pageId, todoId, isTodoList }) {
   const navigate = useNavigate();
@@ -28,13 +29,17 @@ export default function Todo({ todo, pageId, todoId, isTodoList }) {
   };
 
   return (
-    <div key={todo.id}>
+    <div key={todo.id} className={styles.todo}>
       <Checkbox
         checked={todo.completed}
         label={todo.todo}
+        color="secondary"
         onChange={() => handleUpdateTodo(todo.completed, todo.id)}
       />
-      <span onClick={() => handleClickTodo(todo.id)}>
+      <span
+        className={styles.todoContent}
+        onClick={() => handleClickTodo(todo.id)}
+      >
         {/* {updatedTodo !== null ? updatedTodo : todo.todo} */ todo.todo}
       </span>
     </div>

@@ -10,13 +10,15 @@ export default function AddTodoButton() {
     navigate(`/addTodo`);
   };
   return (
-    <Fab
-      className={styles.button}
-      color="secondary"
-      aria-label="add"
-      onClick={handleClickAddButton}
-    >
-      <AddIcon />
-    </Fab>
+    <div className={styles.box}>
+      <Fab
+        className={styles.button}
+        color="secondary"
+        aria-label="add"
+        onClick={handleClickAddButton}
+      >
+        <AddIcon />
+      </Fab>
+    </div>
   );
 }

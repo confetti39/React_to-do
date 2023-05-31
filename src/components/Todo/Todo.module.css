@@ -1,0 +1,12 @@
+.todo {
+  font-weight: 600;
+}
+
+.todo:hover {
+}
+
+.todoContent:hover {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-color: var(--color-grey);
+}

@@ -1,9 +1,13 @@
 .header {
   font-size: 2.5rem;
   font-weight: bold;
-  display: inline;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 1rem;
 }
 
 .header:hover {
   cursor: pointer;
+  color: var(--color-accent);
 }

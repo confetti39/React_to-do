@@ -1,9 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import Header from "../components/Header/Header";
-import DetailButtons from "../components/DetailButtons";
-import Todo from "../components/Todo";
+import Header from "../../components/Header/Header";
+import DetailButtons from "../../components/DetailButtons";
+import Todo from "../../components/Todo/Todo";
+import styles from "./Detail.module.css";
 
 export default function Detail() {
   const { todoId } = useParams();
@@ -21,10 +22,15 @@ export default function Detail() {
   if (isLoading) return <p>로딩 중...</p>;
   if (error) return <p>{error}</p>;
   return (
-    <>
-      <Header />
-      <DetailButtons />
-      <Todo todo={todo} todoId={todoId} isTodoList={false} />
-    </>
+    <div className={styles.container}>
+      <Header className={styles.header} />
+      <Todo
+        className={styles.todo}
+        todo={todo}
+        todoId={todoId}
+        isTodoList={false}
+      />
+      <DetailButtons className={styles.buttons} />
+    </div>
   );
 }

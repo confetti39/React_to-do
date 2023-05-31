@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
+import styles from "./TodoInput.module.css";
 
 export default function AddTodoInput({ type, todoId, setEditMode }) {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
 
   return (
     <Box
+      className={styles.box}
       component="form"
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
@@ -59,14 +61,18 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
       autoComplete="off"
     >
       <TextField
+        className={styles.textField}
         id="filled-basic"
         label={`${type} TODO`}
         variant="filled"
+        color="secondary"
         onChange={handleChange}
       />
       <Button
+        className={styles.button}
         variant="contained"
         startIcon={<AddIcon />}
+        color="secondary"
         onClick={handleSubmit}
       >
         {type}
