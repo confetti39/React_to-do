@@ -23,7 +23,7 @@ export default function Detail() {
       );
     },
     {
-      staleTime: 5000,
+      staleTime: 1000 * 60 * 5,
     }
   );
 
