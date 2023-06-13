@@ -15,7 +15,7 @@ export default function Detail() {
     error,
     data: todo,
   } = useQuery(
-    ["todo", todoId],
+    ["todo", parseInt(todoId)],
     async () => {
       console.log("fetching...");
       return fetch(`https://dummyjson.com/todos/${todoId}`).then((res) =>
@@ -23,7 +23,7 @@ export default function Detail() {
       );
     },
     {
-      staleTime: 1000 * 60 * 5,
+      // staleTime: 1000 * 60 * 5,
     }
   );
 

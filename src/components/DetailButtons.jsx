@@ -31,7 +31,11 @@ export default function DetailButtons() {
         <DeleteIcon />
       </IconButton>
       {editMode ? (
-        <TodoInput type="EDIT" todoId={todoId} setEditMode={setEditMode} />
+        <TodoInput
+          type="EDIT"
+          todoId={parseInt(todoId)}
+          setEditMode={setEditMode}
+        />
       ) : null}
     </div>
   );

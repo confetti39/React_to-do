@@ -5,55 +5,79 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import styles from "./TodoInput.module.css";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 export default function AddTodoInput({ type, todoId, setEditMode }) {
+  const queryClient = new useQueryClient();
   const navigate = useNavigate();
   const [text, setText] = useState("");
   const handleChange = (e) => setText(e.target.value);
-  const handleSubmit = async (e) => {
-    switch (type) {
-      case "ADD":
-        try {
-          const res = await fetch("https://dummyjson.com/todos/add", {
+  const mutation = useMutation(
+    async (newTodo) => {
+      switch (type) {
+        case "ADD":
+          const addRes = await fetch("https://dummyjson.com/todos/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              todo: text,
-              completed: false,
-              userId: 5,
-            }),
+            body: JSON.stringify(newTodo),
           });
-          console.log(await res.json());
-          e.preventDefault();
-          setText("");
-          navigate(`/`);
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+          return addRes;
 
-      case "EDIT":
-        try {
-          const res = await fetch(`https://dummyjson.com/todos/${todoId}`, {
+        case "EDIT":
+          await fetch(`https://dummyjson.com/todos/${todoId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              todo: text,
-            }),
-          });
-          console.log(await res.json());
-          e.preventDefault();
-          setText("");
-          setEditMode(false);
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+            body: JSON.stringify(newTodo),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              queryClient.setQueryData(["todo", todoId], () => {
+                return res;
+              });
+              return res;
+            });
+          break;
 
+        default:
+          console.log("error!");
+      }
+    },
+    {
+      onSuccess: () => {
+        switch (type) {
+          case "ADD":
+            setText("");
+            navigate(`/`);
+            break;
+          case "EDIT":
+            setText("");
+            setEditMode(false);
+            break;
+          default:
+            return;
+        }
+      },
+    },
+    {
+      onError: (err) => {
+        console.log(err);
+      },
+    }
+  );
+
+  const handleSubmit = () => {
+    switch (type) {
+      case "ADD":
+        mutation.mutate({ todo: text, completed: false, userId: 5 });
+        break;
+      case "EDIT":
+        mutation.mutate({ todo: text });
+        break;
       default:
-        console.log("error!");
+        return;
     }
   };
+
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
