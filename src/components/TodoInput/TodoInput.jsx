@@ -34,7 +34,6 @@ export default function AddTodoInput({ type, todoId, setEditMode }) {
               queryClient.setQueryData(["todo", todoId], () => {
                 return res;
               });
-              return res;
             });
           break;
 
